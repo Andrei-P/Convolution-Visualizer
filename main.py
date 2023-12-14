@@ -4,20 +4,33 @@ dimension = 3
 
 def plusDim():
     global dimension 
-    if (dimension < 8): dimension += 1
+    if (dimension < 9): dimension += 2
     custom_kernel.config(text = "Size: " + str(dimension))
+    createForms()
 
 def minusDim():
     global dimension
-    if (dimension > 3): dimension -= 1
+    if (dimension > 3): dimension -= 2
     custom_kernel.config(text = "Size: " + str(dimension))
+    createForms()
+
+def createForms():
+    # Clear forms
+    for form in entry_frame.winfo_children():
+        form.destroy()
+
+    for i in range(dimension):
+        for j in range(dimension):
+            f=Entry(entry_frame,width=3)
+            f.grid(row=i,column=j)
 
 win = Tk()
 win.title("Kernel Visualizer")
 win.geometry('1600x900')
 win.configure(background = "grey")
 
-custom_kernel_frame=Frame()
+custom_kernel_frame = Frame()
+entry_frame = Frame()
 
 size_m_b = Button(custom_kernel_frame,
                   text = "-",
@@ -49,6 +62,10 @@ custom_kernel_frame.pack()
 size_m_b.grid(row=1,column=1)
 size_p_b.grid(row=1,column=2)
 custom_kernel.grid(row=2, column=1)
+entry_frame.pack()
+
+
+createForms()
 
 win.mainloop()
 
