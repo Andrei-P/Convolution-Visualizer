@@ -57,7 +57,6 @@ def start():
             kernel.append([])
             for j in range(dimension):
                 kernel[i].append(str(forms[j+(i*dimension)].get()))
-        print(kernel)
     
     else:
         print("Please select an algorithm.")
