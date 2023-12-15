@@ -1,7 +1,9 @@
 from tkinter import *
 from tkinter import filedialog
+import numpy as np
 
 dimension = 3
+file_name = ""
 
 def plusDim():
     global dimension 
@@ -26,11 +28,47 @@ def createForms():
             f.grid(row=i,column=j)
 
 def uploadImage():
+    global file_name
     file_name = filedialog.askopenfilename()
-    print(file_name)
 
 def start():
-    print (algoSelec.get())
+    if (algoSelec.get() == "Sobel Edge Detector"):
+        kernel = np.array([[-1 -1j, 0 -2j, 1 -1j],
+                           [-2 +0j, 0 -0j, 2 +0j],
+                           [-1 +1j, 0 +2j, 1 +1j]])
+    elif (algoSelec.get() == "Prewitt Edge Detector"):
+        kernel = np.array([[-1 -1j, 0 -1j, 1 -1j],
+                           [-1 +0j, 0 -0j, 1 +0j],
+                           [-1 +1j, 0 +1j, 1 +1j]])
+    elif (algoSelec.get() == "Roberts Edge Detector"):
+        kernel = np.array([[1 +0j, 0 +1j],
+                           [0 -1j, -1 +0j],])
+    elif (algoSelec.get() == "Laplacian Filter"):
+        kernel = np.array([[0, 1, 0],
+                           [1, -4, 1],
+                           [0, 1, 0]])
+    elif (algoSelec.get() == "Custom"):
+        kernel = []
+        global dimension
+
+        forms = list(entry_frame.children.values())
+
+        for i in range(dimension):
+            kernel.append([])
+            for j in range(dimension):
+                kernel[i].append(str(forms[j+(i*dimension)].get()))
+        print(kernel)
+    
+    else:
+        print("Please select an algorithm.")
+        return
+    
+    global file_name
+    if (file_name == ""):
+        print("Please upload an image.")
+    
+    #then call function using kernel
+
 
 win = Tk()
 win.title("Kernel Visualizer")
@@ -39,7 +77,7 @@ win.configure(background = "grey")
 
 custom_kernel_frame = Frame()
 entry_frame = Frame()
-
+ 
 upload_button=Button(win,
                      text = "Upload Image",
                      command = uploadImage)
