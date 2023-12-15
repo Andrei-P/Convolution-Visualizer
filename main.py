@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import filedialog
 
 dimension = 3
 
@@ -24,6 +25,13 @@ def createForms():
             f=Entry(entry_frame,width=3)
             f.grid(row=i,column=j)
 
+def uploadImage():
+    file_name = filedialog.askopenfilename()
+    print(file_name)
+
+def start():
+    print (algoSelec.get())
+
 win = Tk()
 win.title("Kernel Visualizer")
 win.geometry('1600x900')
@@ -31,6 +39,10 @@ win.configure(background = "grey")
 
 custom_kernel_frame = Frame()
 entry_frame = Frame()
+
+upload_button=Button(win,
+                     text = "Upload Image",
+                     command = uploadImage)
 
 size_m_b = Button(custom_kernel_frame,
                   text = "-",
@@ -44,6 +56,9 @@ size_p_b = Button(custom_kernel_frame,
                   width = 3,
                   command = plusDim)
 
+start_button = Button(win,
+                      text = "Start Visualizer",
+                      command = start)
 
 algoSelec = StringVar()
 algoSelec.set("Select Algorithm")
@@ -57,6 +72,8 @@ custom_kernel = Label(custom_kernel_frame, text = "Size: " + str(dimension))
 
 
 drop.pack()
+upload_button.pack()
+start_button.pack()
 
 custom_kernel_frame.pack()
 size_m_b.grid(row=1,column=1)
