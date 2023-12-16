@@ -1,5 +1,5 @@
 import numpy as np
-import scipy as shape
+import scipy as sp
 import itertools as it
 import matplotlib.pyplot as plt
 from scipy import signal
@@ -30,11 +30,14 @@ def convolve(image_imp, kernel):
     image_filtered[:, :, -1] = 1
     image_display = np.copy(image_prev)
     
-    fig, (axL, axR) = plt.subplots(ncols = 2, tight_layout = True)
-    fig.suptitle(kernel_name)
+    fig, (axL, axR) = plt.subplots(ncols = 2, constrained_layout = True)
+    fig.suptitle(kernel)
     
     imageL = axL.imshow(image_prev)
-    imageR = axR.imshow(image_filtered)
+    imageR = axR.imshow(image_prev)
+    axR.set_xlim(axL.get_xlim()), axR.set_ylim(axL.get_ylim())
+    axL.axis('off'), axR.axis('off')
+    imageR.set_clim([0, 1])
     
     indexList = list(it.product(range(image_prev.shape[0]), range(image_prev.shape[1])))
     increment = int(len(indexList)/total)
@@ -52,5 +55,5 @@ def convolve(image_imp, kernel):
         imageR.set_data(image_display)
         return (imageR, )
 
-    animation = FuncAnimation(fig, update=update_plot, init=init_plot, interval 1000/fps, frames=range(0, len(indexList), 30), repeat=False, blit=True)
+    animation = FuncAnimation(fig, update=update_plot, init=init_plot, interval=1000/fps, frames=range(0, len(indexList), increment), repeat=False, blit=True)
     plt.show()
