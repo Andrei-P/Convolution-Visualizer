@@ -36,17 +36,33 @@ def start():
         kernel = np.array([[-1 -1j, 0 -2j, 1 -1j],
                            [-2 +0j, 0 -0j, 2 +0j],
                            [-1 +1j, 0 +2j, 1 +1j]])
+        
     elif (algoSelec.get() == "Prewitt Edge Detector"):
         kernel = np.array([[-1 -1j, 0 -1j, 1 -1j],
                            [-1 +0j, 0 -0j, 1 +0j],
                            [-1 +1j, 0 +1j, 1 +1j]])
+        
     elif (algoSelec.get() == "Roberts Edge Detector"):
         kernel = np.array([[1 +0j, 0 +1j],
                            [0 -1j, -1 +0j],])
+        
     elif (algoSelec.get() == "Laplacian Filter"):
         kernel = np.array([[0, 1, 0],
                            [1, -4, 1],
                            [0, 1, 0]])
+        
+    elif (algoSelec.get() == "3x3 Average Smoothing"):
+        kernel = np.array([[1/9, 1/9, 1/9],
+                           [1/9, 1/9, 1/9],
+                           [1/9, 1/9, 1/9]])
+        
+    elif (algoSelec.get() == "5x5 Average Smoothing"):
+        kernel = np.array([[1/25, 1/25, 1/25, 1/25, 1/25],
+                           [1/25, 1/25, 1/25, 1/25, 1/25],
+                           [1/25, 1/25, 1/25, 1/25, 1/25],
+                           [1/25, 1/25, 1/25, 1/25, 1/25],
+                           [1/25, 1/25, 1/25, 1/25, 1/25]])
+        
     elif (algoSelec.get() == "Custom"):
         kernel = []
         global dimension
@@ -65,9 +81,9 @@ def start():
     global file_name
     if (file_name == ""):
         print("Please upload an image.")
+        return
     
     #then call function using kernel
-
 
 win = Tk()
 win.title("Kernel Visualizer")
@@ -103,6 +119,8 @@ drop = OptionMenu(win, algoSelec,   "Sobel Edge Detector",
                                     "Prewitt Edge Detector",
                                     "Roberts Edge Detector",
                                     "Laplacian Filter",
+                                    "3x3 Average Smoothing",
+                                    "5x5 Average Smoothing",
                                     "Custom")
 
 custom_kernel = Label(custom_kernel_frame, text = "Size: " + str(dimension))
