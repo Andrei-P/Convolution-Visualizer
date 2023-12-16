@@ -45,7 +45,7 @@ def convolve(image_imp, kernel):
     imR.set_clim([0, 1])
     
     indexList = list(it.product(range(image_prev.shape[0]), range(image_prev.shape[1])))
-    increment = np.int(len(indexList)/total)
+    increment = int(len(indexList)/total)
     
     def init_plot():
         axR.imshow(image_prev)
