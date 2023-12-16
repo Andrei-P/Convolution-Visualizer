@@ -5,6 +5,8 @@ import matplotlib.pyplot as plt
 from scipy import signal
 from matplotlib.animation import FuncAnimation
 
+plt.rcParams["font.size"] = 12
+plt.rcParams[:"figure.figsize"] = (14,7)
 
 def conv(image, kernel):
     image_conv = np.copy(image)
@@ -20,10 +22,9 @@ def rgba(image, fill_value=1):
     return image2
 
 def convolve(image_imp, kernel):
-    plt.rcParams[:"figure.figsize"] = (14,7)
     fps = 30
     t = 10
-    total = fps * t
+    total = fps*t
     
     image_prev = rgba(plt.imread(image_imp).astype(np.float)/255)
     image_filtered = conv(image_prev, kernel)
