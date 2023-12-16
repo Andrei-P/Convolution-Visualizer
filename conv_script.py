@@ -16,7 +16,7 @@ def rgba(image, fill_value=1):
     if image.shape[-1] >= 4:
         return image
     image2 = np.full(shape=(*image.shape[:-1], 4), fill_value=fill_value, dtype=image.dtype)
-    image2[:, :, :-1] = arr/255.
+    image2[:, :, :-1] = image/255
     return image2
 
 def convolve(image_imp, kernel):
@@ -25,7 +25,7 @@ def convolve(image_imp, kernel):
     t = 10
     total = fps * t
     
-    image_prev = rgba(plt.imread(image_imp).astype(np.float)/255).
+    image_prev = rgba(plt.imread(image_imp).astype(np.float)/255)
     image_filtered = conv(image_prev, kernel)
     image_filtered[:, :, -1] = 1
     image_display = np.copy(image_prev)
