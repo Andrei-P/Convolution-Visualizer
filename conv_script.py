@@ -1,5 +1,5 @@
 import numpy as np
-import scipy as sh
+import scipy as shape
 import itertools as it
 import matplotlib.pyplot as plt
 from scipy import signal
