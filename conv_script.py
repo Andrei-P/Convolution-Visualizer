@@ -53,8 +53,10 @@ def convolve(image_imp, kernel):
     
     def update_plot(frame):
     
-        for i in range(frame, frame*2):   
-            x_index, y_index = indexList[frame]
+        for i in range(frame, frame + increment):
+            if i >= len(indexList):
+                break
+            x_index, y_index = indexList[i]
             image_display[x_index, y_index, :] = image_filtered[x_index, y_index, :]
     
         imR.set_data(image_display)
