@@ -38,8 +38,8 @@ def convolve(image_imp, kernel):
     fig, (axL, axR) = plt.subplots(ncols = 2, constrained_layout = True)
     fig.suptitle(kernel)
     
-    imL = axL.imshow(image_prev)
-    imR = axR.imshow(image_prev)
+    imL = axL.imshow(image_prev, interpolation="none")
+    imR = axR.imshow(image_prev, interpolation="none")
     axR.set_xlim(axL.get_xlim()), axR.set_ylim(axL.get_ylim())
     axL.axis('off'), axR.axis('off')
     imR.set_clim([0, 1])
