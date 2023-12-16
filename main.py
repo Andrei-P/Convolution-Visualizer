@@ -19,7 +19,6 @@ def minusDim():
     createForms()
 
 def createForms():
-    # Clear forms
     for form in entry_frame.winfo_children():
         form.destroy()
 
