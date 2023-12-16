@@ -87,7 +87,7 @@ def start():
 
 win = Tk()
 win.title("Kernel Visualizer")
-win.geometry('1600x900')
+win.geometry('500x500')
 win.configure(background = "grey")
 
 custom_kernel_frame = Frame()
