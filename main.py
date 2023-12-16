@@ -63,6 +63,17 @@ def start():
                            [1/25, 1/25, 1/25, 1/25, 1/25],
                            [1/25, 1/25, 1/25, 1/25, 1/25]])
         
+    elif (algoSelec.get() == "9x9 Average Smoothing"):
+        kernel = np.array([[1/81, 1/81, 1/81, 1/81, 1/81, 1/81, 1/81, 1/81, 1/81],
+                           [1/81, 1/81, 1/81, 1/81, 1/81, 1/81, 1/81, 1/81, 1/81],
+                           [1/81, 1/81, 1/81, 1/81, 1/81, 1/81, 1/81, 1/81, 1/81],
+                           [1/81, 1/81, 1/81, 1/81, 1/81, 1/81, 1/81, 1/81, 1/81],
+                           [1/81, 1/81, 1/81, 1/81, 1/81, 1/81, 1/81, 1/81, 1/81],
+                           [1/81, 1/81, 1/81, 1/81, 1/81, 1/81, 1/81, 1/81, 1/81],
+                           [1/81, 1/81, 1/81, 1/81, 1/81, 1/81, 1/81, 1/81, 1/81],
+                           [1/81, 1/81, 1/81, 1/81, 1/81, 1/81, 1/81, 1/81, 1/81],
+                           [1/81, 1/81, 1/81, 1/81, 1/81, 1/81, 1/81, 1/81, 1/81]])
+        
     elif (algoSelec.get() == "Custom"):
         kernel = []
         global dimension
@@ -72,7 +83,7 @@ def start():
         for i in range(dimension):
             kernel.append([])
             for j in range(dimension):
-                kernel[i].append(int(forms[j+(i*dimension)].get()))
+                kernel[i].append(float(forms[j+(i*dimension)].get()))
     
     else:
         print("Please select an algorithm.")
@@ -121,6 +132,7 @@ drop = OptionMenu(win, algoSelec,   "Sobel Edge Detector",
                                     "Laplacian Filter",
                                     "3x3 Average Smoothing",
                                     "5x5 Average Smoothing",
+                                    "9x9 Average Smoothing",
                                     "Custom")
 
 custom_kernel = Label(custom_kernel_frame, text = "Size: " + str(dimension))
