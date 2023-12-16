@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter import filedialog
 import numpy as np
+from conv_script import *
 
 dimension = 3
 file_name = ""
@@ -83,7 +84,7 @@ def start():
         print("Please upload an image.")
         return
     
-    #then call function using kernel
+    convolve(file_name,kernel)
 
 win = Tk()
 win.title("Kernel Visualizer")
